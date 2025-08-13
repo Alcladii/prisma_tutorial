@@ -2,28 +2,13 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.user.deleteMany(); 
-  const user = await prisma.user.create({
-    data:{
-      name: "Kyle",
-      email: "kyle1@example.com",
-      age: 32,
-      userPreference: {
-        create: {
-          emailUpdates: true,
-        }
-      }
-    },
-    select: {
-      name: true,
-      userPreference: {
-        select: {
-          id: true,
-        }
-      }
+  //await prisma.user.deleteMany(); 
+  const users = await prisma.user.findMany({
+    where: {
+      name: "Sarra"
     },
   });
-  console.log(user);
+  console.log(users);
 }
 
 main()
