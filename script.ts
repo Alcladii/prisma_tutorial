@@ -10,15 +10,15 @@ async function main() {
   //   ],
   // })
   //await prisma.user.deleteMany(); 
-  const users = await prisma.user.findMany({
+  const users = await prisma.user.update({
     where: {
-      email: { endsWith: "@example1.com" }
+      email: "john@example1.com"
     },
-    orderBy: {
-      age: "desc",
-    },
-    //take: 2,
-    //skip: 1,
+    data: {
+      age: {
+        multiply: 2
+      }
+    }
   });
   console.log(users);
 }
