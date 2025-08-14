@@ -10,16 +10,48 @@ async function main() {
   //   ],
   // })
   //await prisma.user.deleteMany(); 
-  const users = await prisma.user.update({
+  // const preference = await prisma.userPreference.create({
+  //   data: {
+  //     emailUpdates: true,
+  //   }
+  // }) 
+  // console.log(preference);
+  // const users = await prisma.user.update({
+  //   where: {
+  //     email: "john@example1.com"
+  //   },
+  //   data: {
+  //     userPreference: {
+  //       connect: {
+  //         id: "772ca761-78e8-4bed-ab2d-99e03526d302"
+  //       }
+  //     }
+  //   },
+  //   include: {
+  //     userPreference: {
+  //       select: {
+  //         emailUpdates: true
+  //       }
+  //     }
+  //   }
+  // });
+  // const users = await prisma.user.findFirst({
+  //   where: {
+  //     name: "John"
+  //   },
+  //   include: {
+  //     userPreference: {
+  //       select: {
+  //         emailUpdates: true
+  //       }
+  //     }
+  //   },
+  // })
+  const users = await prisma.user.deleteMany({
     where: {
-      email: "john@example1.com"
-    },
-    data: {
-      age: {
-        multiply: 2
-      }
+      age: {gt: 20}
     }
-  });
+  })
   console.log(users);
 }
 
